@@ -1,0 +1,20 @@
+
+.profile__post {
+    margin: 14px 0 0 0; 
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    line-height: 17px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  @media screen and (min-width: 910px) {
+    .profile__post {
+      margin: 16px 0 0 0;
+      text-align: left;
+      font-size: 18px;
+      line-height: 22px;
+    }
+  }
