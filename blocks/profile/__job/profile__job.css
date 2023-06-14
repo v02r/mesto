@@ -1,4 +1,4 @@
-.profile__post {
+.profile__job {
     margin: 14px 0 0 0; 
     font-style: normal;
     font-weight: 400;
@@ -11,7 +11,7 @@
   }
   
   @media screen and (min-width: 910px) {
-    .profile__post {
+    .profile__job {
       margin: 16px 0 0 0;
       text-align: left;
       font-size: 18px;

@@ -1,4 +1,5 @@
 .elements__card {
+  height: 361px;
   display: flex;
   flex-direction: column;
   position: relative;
