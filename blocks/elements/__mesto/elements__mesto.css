@@ -1,6 +1,6 @@
 .elements__mesto {
   margin: 0;
-  display: flex; 
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: first baseline;

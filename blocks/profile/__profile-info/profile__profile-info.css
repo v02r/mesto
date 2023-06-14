@@ -9,6 +9,6 @@
 @media screen and (min-width: 910px) {
     .profile__profile-info {
       flex-direction: row;
-      gap: 30px
+      gap: 30px;
     }
   }
