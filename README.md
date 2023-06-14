@@ -11,4 +11,4 @@
 работа с обработчиками событий addEventListener
 получение и вывод данных из DOM
 
-ссылка на проект: https://github.com/v02r/mesto.git
+ссылка на проект: https://v02r.github.io/mesto/
