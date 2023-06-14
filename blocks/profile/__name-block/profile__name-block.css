@@ -1,0 +1,10 @@
+.profile__name-block {
+padding-bottom: 30px;
+}
+
+@media screen and (min-width: 910px) {
+    .profile__name-block {
+      padding: 0;
+    }
+  }
+

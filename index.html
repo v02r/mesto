@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8"><!--кодировка-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Mesto">
+    <meta name="author" content="Митяев Валера">
+    <title>Проект: Место</title>
+    <link rel="stylesheet" href="pages/index.css">
+  </head>
+  <body class="page">
+<!--хедер-->
+  <header class="header">
+    <img class="header__logo" src="./images/header-logo.svg" alt="логотип">
+  </header>
+  <main class="content">
+<!-- Профиль -->
+    <section class="profile"> 
+      <div class="profile__profile-info">
+        <img src="./images/custo.jpg" alt="фото пофиля" class="profile__avatar-image">
+        <div class="profile__name-block">
+          <div class="profile__edit-info">
+            <p class="profile__name">Жак-Ив Кусто</p>
+            <button class="profile__edit-button" title="Редактировать профиль"></button> 
+          </div>
+          <p class="profile__job">Исследователь океана</p>
+        </div>
+      </div>           
+      <button class="profile__add-button" title="Добавить профиль"></button>
+    </section>
+<!--Элементы-->
+
+    <section class="elements">
+    <div class="elements__card">
+      <img class="elements__image" src="./images/karachaevsk.jpg" alt="место">
+      <div class="elements__mesto">
+        <p class="elements__title">Карачаевск</p>
+        <div class="elements__like">
+  <button class="elements__like-button elements__like-button_active" title="Нравится"></button> 
+        </div>
+      </div>
+    </div>
+
+    <div class="elements__card">
+      <img class="elements__image" src="./images/elbrus.jpg" alt="место">
+      <div class="elements__mesto">
+        <p class="elements__title">Гора Эльбрус</p>
+        <div class="elements__like">
+          <button class="elements__like-button" title="Нравится"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="elements__card">
+      <img class="elements__image" src="./images/dombay.jpg" alt="место">
+      <div class="elements__mesto">
+        <p class="elements__title">Домбай</p>
+        <div class="elements__like">
+          <button class="elements__like-button" title="Нравится"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="elements__card">
+      <img class="elements__image" src="./images/elbrus.jpg" alt="место">
+      <div class="elements__mesto">
+        <p class="elements__title">Гора Эльбрус</p>
+        <div class="elements__like">
+          <button class="elements__like-button" title="Нравится"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="elements__card">
+      <img class="elements__image" src="./images/dombay.jpg" alt="место">
+      <div class="elements__mesto">
+        <p class="elements__title">Домбай</p>
+        <div class="elements__like">
+          <button class="elements__like-button" title="Нравится"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="elements__card">
+        <img class="elements__image" src="./images/karachaevsk.jpg" alt="место">
+        <div class="elements__mesto">
+        <p class="elements__title">Kарачаево-черкесия</p>
+        <div class="elements__like">
+          <button class="elements__like-button" title="Нравится"></button>
+        </div>
+        </div>
+      </div>
+      </section>   
+    </main>  
+    <footer class="footer">
+      <p class="footer__copyright"> &copy; 2023. Валера Митяев</p>
+    </footer>  
+ <!-- popuap edit-profile -->
+    <div class="popup">
+        <div class="popup__container">
+          <button class="popup__cancel-button" title="Закрыть окно"></button>
+          <p class="popup__title">Редактировать профиль</p>
+          <form class="popup__form" name="formEditProfile"  novalidate>
+            <label class="popup__input-field">
+              <input type="text" class="popup__input popup__input_name" placeholder="Имя" name="p-name" required></label>
+            <label class="popup__input-field">
+              <input type="text" class="popup__input popup__input_job" placeholder="Должность" name="p-job" required></label>
+            <button class="popup__save-button" type="submit">Сохранить</button>
+        </div>
+    </div>
+    <script src="./pages/index.js"></script>
+  </body> 
+</html>
