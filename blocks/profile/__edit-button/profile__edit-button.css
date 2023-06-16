@@ -24,3 +24,8 @@
       background-size: 10px 10px;
     }
   }
+
+  .profile__edit-button:hover {
+    opacity: 0.6
+  }
+  

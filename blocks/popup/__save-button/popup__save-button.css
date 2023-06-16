@@ -17,3 +17,7 @@
     width: 358px;
   }
 }
+
+.popup__save-button:hover {
+  opacity: 0.8
+}

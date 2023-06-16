@@ -16,3 +16,7 @@
    position: relative;
    cursor: pointer;
 }
+
+.elements__like-button:hover {
+  opacity: 0.5
+}
