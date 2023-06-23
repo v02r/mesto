@@ -84,19 +84,36 @@
       <p class="footer__copyright"> &copy; 2023. Валера Митяев</p>
     </footer>  
  <!-- popuap edit-profile -->
-    <div class="popup">
+    <div class="popup popup_type_edit">
         <div class="popup__container">
-          <button class="popup__cancel-button" type="button" title="Закрыть окно"></button>
+          <button class="popup__cancel-button popup__cancel-button_type_edit" type="button" title="Закрыть окно"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
           <form class="popup__form" name="formEditProfile"  novalidate>
             <label class="popup__input-field">
               <input type="text" class="popup__input popup__input_type_name" placeholder="Имя" name="p-name" required></label>
             <label class="popup__input-field">
               <input type="text" class="popup__input popup__input_type_job" placeholder="Должность" name="p-job" required></label>
-            <button class="popup__save-button" type="submit">Сохранить</button>
+            <button class="popup__end-button" type="submit">Сохранить</button>
           </form>
         </div>
     </div>
+
+    <!-- popuap add-mesto -->
+    <div class="popup popup_type_add-mesto">
+      <div class="popup__container">
+        <button class="popup__cancel-button popup__cancel-button_type_add" type="button" title="Закрыть окно"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form" name="formEditProfile"  novalidate>
+          <label class="popup__input-field">
+            <input type="text" class="popup__input popup__input_type_mesto" placeholder="название" name="place-name" required></label>
+          <label class="popup__input-field">
+            <input type="text" class="popup__input popup__input_type_link" placeholder="ссылка на картинку" name="img-link" required></label>
+          <button class="popup__end-button" type="submit">Создать</button>
+        </form>
+      </div>
+  </div>
+
+
     <script src="./scripts/index.js"></script>
   </body> 
 </html>
