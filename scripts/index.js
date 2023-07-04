@@ -22,7 +22,6 @@ function popupOpenMesto() {
 
 }
 
-
 function popupClose() {
   popupProfile.classList.remove ('popup_opened');
   popupAddMesto.classList.remove ('popup_opened');
@@ -34,7 +33,6 @@ function handleFormSubmit (evt) {
     nameInput.textContent=popupName.value;
     jobInput.textContent=popupJob.value;
     popupClose();
-
 }
 
 addMestoButton.addEventListener('click', popupOpenMesto);
