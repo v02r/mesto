@@ -1,4 +1,4 @@
-const profilEditButton = document.querySelector('.profile__edit-button');
+const profileEditButton = document.querySelector('.profile__edit-button');
 const addMestoButton = document.querySelector('.profile__add-button');
 const popupCancelButtonEdit = document.querySelector('.popup__cancel-button_type_edit');
 const popupCancelButtonAdd = document.querySelector('.popup__cancel-button_type_add');
@@ -7,13 +7,18 @@ const popupAddMesto = document.querySelector('.popup_type_add-mesto');
 const elementProfile = document.querySelector('.profile');
 const nameInput = document.querySelector('.profile__name');
 const jobInput = document.querySelector('.profile__job');
-const formElement = document.querySelector('#formEditProfile');
+const formEditProfile = document.querySelector('#formEditProfile');
 
-const popupName = formElement.querySelector('.popup__input_type_name');
-const popupJob = formElement.querySelector('.popup__input_type_job');
+const popupName = formEditProfile.querySelector('.popup__input_type_name');
+const popupJob = formEditProfile.querySelector('.popup__input_type_job');
 const formAddMesto = document.querySelector('#formAddMesto');
 const mestoNameInput = formAddMesto.querySelector('.popup__input_type_mesto');
 const imgLinkInput = formAddMesto.querySelector('.popup__input_type_link');
+
+const imagePopup = document.querySelector('.popup_type_image');
+const imagePopupImage = imagePopup.querySelector('.popup__image');
+const imagePopupTitle = imagePopup.querySelector('.popup__title-bigimage');
+const imagePopupCloseButton = imagePopup.querySelector('.popup__cancel-button_type_image');
 
 // Добавление карточек
 const initialCards = [
@@ -46,87 +51,91 @@ const initialCards = [
 const template = document.querySelector('#template-element');
 const container = document.querySelector('.elements');
 
-function createNewCard(name, link) {
-  const copy = template.content.cloneNode(true);
-  const titleElement = copy.querySelector('.elements__title');
-  const imageElement = copy.querySelector('.elements__image');
-  const likeButton = copy.querySelector('.elements__like-button');
-  const deleteButton = copy.querySelector('.elements__delete-button');
+function createCard(name, link, alt) {
+  const cardTemplate = template.content.cloneNode(true);
+  const titleElement = cardTemplate.querySelector('.elements__title');
+  const imageElement = cardTemplate.querySelector('.elements__image');
+  const likeButton = cardTemplate.querySelector('.elements__like-button');
+  const deleteButton = cardTemplate.querySelector('.elements__delete-button');
 
   titleElement.textContent = name;
   imageElement.src = link;
+  imageElement.alt = alt;
 
-  likeButton.addEventListener('click', likeButtonActive); // лайк
-  function likeButtonActive() {
+  likeButton.addEventListener('click', toggleLikeButton);
+  function toggleLikeButton() {
     likeButton.classList.toggle('elements__like-button_active');
   }
 
-  deleteButton.addEventListener('click', deleteButtonActive); // удаляем через родительский элемент
-  function deleteButtonActive() {
-    const card = deleteButton.parentElement.parentElement;
+  deleteButton.addEventListener('click', deleteCard);
+  function deleteCard() {
+    const card = deleteButton.closest('.elements__card');
     card.remove();
   }
-
-  const imagePopup = document.querySelector('.popup_type_image');
-  const imagePopupImage = imagePopup.querySelector('.popup__image');
-  const imagePopupTitle = imagePopup.querySelector('.popup__title-bigimage');
-  const imagePopupCloseButton = imagePopup.querySelector('.popup__cancel-button_type_image');
 
   function openImagePopup() {
     imagePopupImage.src = link;
     imagePopupTitle.textContent = name;
-    imagePopup.classList.add('popup_opened');
+    openPopup(imagePopup);
   }
 
   function closeImagePopup() {
-    imagePopup.classList.remove('popup_opened');
+    closePopup(imagePopup);
   }
 
   imageElement.addEventListener('click', openImagePopup);
   imagePopupCloseButton.addEventListener('click', closeImagePopup);
 
-  container.prepend(copy);
+  return cardTemplate;
+}
+
+function renderCard(name, link, alt) {
+  const card = createCard(name, link, alt);
+  container.prepend(card);
 }
 
 initialCards.forEach((card) => {
-  createNewCard(card.name, card.link);
+  renderCard(card.name, card.link);
 });
 
-function handleFormSubmitMesto(evt) {
+function handleAddMestoFormSubmit(evt) {
   evt.preventDefault();
   const nameValue = mestoNameInput.value;
   const linkValue = imgLinkInput.value;
- 
-  createNewCard(nameValue, linkValue);
+
+  renderCard(nameValue, linkValue);
   formAddMesto.reset();
-  popupClose();
+  closePopup(popupAddMesto);
 }
 
-function popupEdit() {
-  popupProfile.classList.add('popup_opened');
+function openEditProfilePopup() {
   popupName.value = nameInput.textContent;
   popupJob.value = jobInput.textContent;
+  openPopup(popupProfile);
 }
 
-function popupOpenMesto() {
-  popupAddMesto.classList.add('popup_opened');
+function openAddMestoPopup() {
+  openPopup(popupAddMesto);
 }
 
-function popupClose() {
-  popupProfile.classList.remove('popup_opened');
-  popupAddMesto.classList.remove('popup_opened');
-}
-
-function handleFormSubmit(evt) {
+function handleEditProfileFormSubmit(evt) {
   evt.preventDefault();
   nameInput.textContent = popupName.value;
   jobInput.textContent = popupJob.value;
-  popupClose();
+  closePopup(popupProfile);
 }
 
-addMestoButton.addEventListener('click', popupOpenMesto);
-profilEditButton.addEventListener('click', popupEdit);
-popupCancelButtonEdit.addEventListener('click', popupClose);
-popupCancelButtonAdd.addEventListener('click', popupClose);
-formElement.addEventListener('submit', handleFormSubmit);
-formAddMesto.addEventListener('submit', handleFormSubmitMesto);
+addMestoButton.addEventListener('click', openAddMestoPopup);
+profileEditButton.addEventListener('click', openEditProfilePopup);
+popupCancelButtonEdit.addEventListener('click', () => closePopup(popupProfile));
+popupCancelButtonAdd.addEventListener('click', () => closePopup(popupAddMesto));
+formEditProfile.addEventListener('submit', handleEditProfileFormSubmit);
+formAddMesto.addEventListener('submit', handleAddMestoFormSubmit);
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+}
