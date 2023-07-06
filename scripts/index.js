@@ -51,7 +51,7 @@ const initialCards = [
 const template = document.querySelector('#template-element');
 const container = document.querySelector('.elements');
 
-function createCard(name, link, alt) {
+function createCard(name, link) {
   const cardTemplate = template.content.cloneNode(true);
   const titleElement = cardTemplate.querySelector('.elements__title');
   const imageElement = cardTemplate.querySelector('.elements__image');
