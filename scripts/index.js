@@ -60,7 +60,7 @@ function createCard(name, link, alt) {
 
   titleElement.textContent = name;
   imageElement.src = link;
-  imageElement.alt = alt;
+  imageElement.alt = name;
 
   likeButton.addEventListener('click', toggleLikeButton);
   function toggleLikeButton() {
@@ -75,6 +75,7 @@ function createCard(name, link, alt) {
 
   function openImagePopup() {
     imagePopupImage.src = link;
+    imageElement.alt = name;
     imagePopupTitle.textContent = name;
     openPopup(imagePopup);
   }
