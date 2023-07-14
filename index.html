@@ -57,10 +57,13 @@
           <h2 class="popup__title">Редактировать профиль</h2>
           <form class="popup__form" id="formEditProfile" name="formEditProfile"  novalidate>
             <label class="popup__input-field">
-              <input type="text" class="popup__input popup__input_type_name" placeholder="Имя" name="p-name" required></label>
+              <input type="text" class="popup__input popup__input_type_name" placeholder="Имя" name="p-name" required minlength="2" maxlength="40"></label>
+              <span id="error-p-name" class="error-message"></span>
+
             <label class="popup__input-field">
-              <input type="text" class="popup__input popup__input_type_job" placeholder="Должность" name="p-job" required></label>
-            <button class="popup__end-button" type="submit">Сохранить</button>
+              <input type="text" class="popup__input popup__input_type_job" placeholder="Должность" name="p-job" required minlength="2" maxlength="400"></label>
+              <span id="error-p-job" class="error-message"></span>
+            <button class="popup__end-button popup__end-button_disabled" disabled type="submit">Сохранить</button>
           </form>
         </div>
     </div>
@@ -72,10 +75,13 @@
         <h2 class="popup__title">Новое место</h2>
         <form class="popup__form" id="formAddMesto" name="formAddmesto"  novalidate>
           <label class="popup__input-field">
-            <input type="text" class="popup__input popup__input_type_mesto" placeholder="название" name="place-name" required></label>
-          <label class="popup__input-field">
-            <input type="text" class="popup__input popup__input_type_link" placeholder="ссылка на картинку" name="img-link" required></label>
-          <button class="popup__end-button" type="submit">Создать</button>
+            <input type="text" class="popup__input popup__input_type_mesto" placeholder="название" name="place-name" required minlength="2" maxlength="30"></label>
+            <span id="error-place-name" class="error-message"></span>
+          
+            <label class="popup__input-field">
+            <input type="url" class="popup__input popup__input_type_link" placeholder="ссылка на картинку" name="img-link" required></label>
+            <span id="error-img-link" class="error-message"></span>
+          <button class="popup__end-button popup__end-button_disabled"  disabled type="submit">Создать</button>
         </form>
       </div>
   </div>
@@ -85,10 +91,11 @@
   <div class="popup__image-container">
     <button class="popup__cancel-button popup__cancel-button_type_image" type="button" title="Закрыть окно"></button>
     <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg" alt="место">
-    <h2 class="popup__title-bigimage">hjbstn</h2>
+    <h2 class="popup__title-bigimage"></h2>
   </div>
 </div>
 
  <script src="./scripts/index.js"></script>
+ <script src="./scripts/validate.js"></script>
   </body> 
 </html>

@@ -105,8 +105,9 @@ function handleAddMestoFormSubmit(evt) {
   const linkValue = imgLinkInput.value;
 
   renderCard(nameValue, linkValue);
-  formAddMesto.reset();
+  enableValidation();
   closePopup(popupAddMesto);
+  formAddMesto.reset();
 }
 
 function openEditProfilePopup() {
@@ -117,21 +118,27 @@ function openEditProfilePopup() {
 
 function openAddMestoPopup() {
   openPopup(popupAddMesto);
+  toggleSubmitButtonState(formAddMesto); 
 }
 
 function handleEditProfileFormSubmit(evt) {
   evt.preventDefault();
   nameInput.textContent = popupName.value;
   jobInput.textContent = popupJob.value;
+  enableValidation();
   closePopup(popupProfile);
 }
 
+document.addEventListener('keydown', handleEscKeydown);
 addMestoButton.addEventListener('click', openAddMestoPopup);
 profileEditButton.addEventListener('click', openEditProfilePopup);
 popupCancelButtonEdit.addEventListener('click', () => closePopup(popupProfile));
 popupCancelButtonAdd.addEventListener('click', () => closePopup(popupAddMesto));
 formEditProfile.addEventListener('submit', handleEditProfileFormSubmit);
 formAddMesto.addEventListener('submit', handleAddMestoFormSubmit);
+popupProfile.addEventListener('click', handleOverlayClick);
+popupAddMesto.addEventListener('click', handleOverlayClick);
+imagePopup.addEventListener('click', handleOverlayClick);
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -139,4 +146,20 @@ function openPopup(popup) {
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+}
+
+function handleEscKeydown(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(popupProfile);
+    closePopup(popupAddMesto);
+    closePopup(imagePopup);
+  }
+}
+
+function handleOverlayClick(evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(popupProfile);
+    closePopup(popupAddMesto);
+    closePopup(imagePopup);
+  }
 }
