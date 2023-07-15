@@ -20,34 +20,6 @@ const imagePopupImage = imagePopup.querySelector('.popup__image');
 const imagePopupTitle = imagePopup.querySelector('.popup__title-bigimage');
 const imagePopupCloseButton = imagePopup.querySelector('.popup__cancel-button_type_image');
 
-// Добавление карточек
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  },
-];
-
 const template = document.querySelector('#template-element');
 const container = document.querySelector('.elements');
 
@@ -105,9 +77,8 @@ function handleAddMestoFormSubmit(evt) {
   const linkValue = imgLinkInput.value;
 
   renderCard(nameValue, linkValue);
-  enableValidation();
-  closePopup(popupAddMesto);
   formAddMesto.reset();
+  closePopup(popupAddMesto);
 }
 
 function openEditProfilePopup() {
@@ -118,15 +89,44 @@ function openEditProfilePopup() {
 
 function openAddMestoPopup() {
   openPopup(popupAddMesto);
-  toggleSubmitButtonState(formAddMesto); 
+  toggleSubmitButtonState(formAddMesto);
 }
 
 function handleEditProfileFormSubmit(evt) {
   evt.preventDefault();
   nameInput.textContent = popupName.value;
   jobInput.textContent = popupJob.value;
-  enableValidation();
   closePopup(popupProfile);
+}
+
+function addEscListener() {
+  document.addEventListener('keydown', handleEscKeydown);
+}
+
+function removeEscListener() {
+  document.removeEventListener('keydown', handleEscKeydown);
+}
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  addEscListener();
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  removeEscListener();
+}
+
+function handleEscKeydown(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
+
+function handleOverlayClick(evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.currentTarget);
+  }
 }
 
 document.addEventListener('keydown', handleEscKeydown);
@@ -139,27 +139,3 @@ formAddMesto.addEventListener('submit', handleAddMestoFormSubmit);
 popupProfile.addEventListener('click', handleOverlayClick);
 popupAddMesto.addEventListener('click', handleOverlayClick);
 imagePopup.addEventListener('click', handleOverlayClick);
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-}
-
-function handleEscKeydown(evt) {
-  if (evt.key === 'Escape') {
-    closePopup(popupProfile);
-    closePopup(popupAddMesto);
-    closePopup(imagePopup);
-  }
-}
-
-function handleOverlayClick(evt) {
-  if (evt.target === evt.currentTarget) {
-    closePopup(popupProfile);
-    closePopup(popupAddMesto);
-    closePopup(imagePopup);
-  }
-}

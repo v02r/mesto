@@ -8,47 +8,47 @@ function disableSubmitButton(submitButton) {
   submitButton.classList.add('popup__end-button_disabled');
 }
 
-function enableValidation() {
-  const forms = document.querySelectorAll('.popup__form');
+function enableValidation(config) {
+  const forms = document.querySelectorAll(config.formSelector);
+
   forms.forEach((form) => {
-    form.addEventListener('submit', handleFormSubmit);
-    form.addEventListener('input', handleFormInput);
-    toggleSubmitButtonState(form);
+    form.addEventListener('submit', (evt) => handleFormSubmit(evt, config));
+    form.addEventListener('input', () => handleFormInput(form, config));
+    toggleSubmitButtonState(form, config.submitButtonSelector);
   });
 }
 
-function handleFormSubmit(evt) {
+function handleFormSubmit(evt, config) {
   evt.preventDefault();
 }
 
-function handleFormInput(evt) {
-  const form = evt.target.closest('.popup__form');
-  const input = evt.target;
+function handleFormInput(form, config) {
+  const input = event.target;
   const error = form.querySelector(`#error-${input.name}`);
 
   if (!input.validity.valid) {
-    showInputError(input, error);
+    showInputError(input, error, config);
   } else {
-    hideInputError(input, error);
+    hideInputError(input, error, config);
   }
 
-  toggleSubmitButtonState(form);
+  toggleSubmitButtonState(form, config.submitButtonSelector);
 }
 
-function showInputError(input, error) {
-  input.classList.add('popup__input_type_error');
+function showInputError(input, error, config) {
+  input.classList.add(config.inputErrorClass);
   error.textContent = input.validationMessage;
-  error.classList.add('error-message_visible');
+  error.classList.add(config.errorClass);
 }
 
-function hideInputError(input, error) {
-  input.classList.remove('popup__input_type_error');
+function hideInputError(input, error, config) {
+  input.classList.remove(config.inputErrorClass);
   error.textContent = '';
-  error.classList.remove('error-message_visible');
+  error.classList.remove(config.errorClass);
 }
 
-function toggleSubmitButtonState(form) {
-  const submitButton = form.querySelector('.popup__end-button');
+function toggleSubmitButtonState(form, submitButtonSelector) {
+  const submitButton = form.querySelector(submitButtonSelector);
   if (form.checkValidity()) {
     enableSubmitButton(submitButton);
   } else {
@@ -56,4 +56,11 @@ function toggleSubmitButtonState(form) {
   }
 }
 
-enableValidation();
+const config = {
+  formSelector: '.popup__form',
+  submitButtonSelector: '.popup__end-button',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'error-message_visible',
+};
+
+enableValidation(config);
