@@ -1,11 +1,11 @@
-function enableSubmitButton(submitButton) {
+function enableSubmitButton(submitButton, config) {
   submitButton.removeAttribute('disabled');
-  submitButton.classList.remove('popup__end-button_disabled');
+  submitButton.classList.remove(config.disabledButtonClass);
 }
 
-function disableSubmitButton(submitButton) {
+function disableSubmitButton(submitButton, config) {
   submitButton.setAttribute('disabled', true);
-  submitButton.classList.add('popup__end-button_disabled');
+  submitButton.classList.add(config.disabledButtonClass);
 }
 
 function enableValidation(config) {
@@ -14,7 +14,7 @@ function enableValidation(config) {
   forms.forEach((form) => {
     form.addEventListener('submit', (evt) => handleFormSubmit(evt, config));
     form.addEventListener('input', () => handleFormInput(form, config));
-    toggleSubmitButtonState(form, config.submitButtonSelector);
+    toggleSubmitButtonState(form, config.submitButtonSelector, config);
   });
 }
 
@@ -32,7 +32,7 @@ function handleFormInput(form, config) {
     hideInputError(input, error, config);
   }
 
-  toggleSubmitButtonState(form, config.submitButtonSelector);
+  toggleSubmitButtonState(form, config.submitButtonSelector, config);
 }
 
 function showInputError(input, error, config) {
@@ -47,12 +47,12 @@ function hideInputError(input, error, config) {
   error.classList.remove(config.errorClass);
 }
 
-function toggleSubmitButtonState(form, submitButtonSelector) {
+function toggleSubmitButtonState(form, submitButtonSelector, config) {
   const submitButton = form.querySelector(submitButtonSelector);
   if (form.checkValidity()) {
-    enableSubmitButton(submitButton);
+    enableSubmitButton(submitButton, config);
   } else {
-    disableSubmitButton(submitButton);
+    disableSubmitButton(submitButton, config);
   }
 }
 
@@ -61,6 +61,7 @@ const config = {
   submitButtonSelector: '.popup__end-button',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'error-message_visible',
+  disabledButtonClass: 'popup__end-button_disabled',
 };
 
 enableValidation(config);

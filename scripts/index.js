@@ -89,7 +89,7 @@ function openEditProfilePopup() {
 
 function openAddMestoPopup() {
   openPopup(popupAddMesto);
-  toggleSubmitButtonState(formAddMesto);
+  toggleSubmitButtonState(formAddMesto, config.submitButtonSelector, config);
 }
 
 function handleEditProfileFormSubmit(evt) {
