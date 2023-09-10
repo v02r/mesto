@@ -1,5 +1,6 @@
 import { initialCards } from './constants.js';
 import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 
 const profileEditButton = document.querySelector('.profile__edit-button');
 const addMestoButton = document.querySelector('.profile__add-button');
@@ -101,3 +102,18 @@ imagePopup.addEventListener('click', handleOverlayClick);
 initialCards.forEach((card) => {
   renderCard(card.name, card.link, card.alt, '#template-element');
 });
+
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__end-button',
+  inactiveButtonClass: 'popup__end-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'error-message_visible',
+};
+
+const formValidatorEditProfile = new FormValidator(config, formEditProfile);
+const formValidatorAddMesto = new FormValidator(config, formAddMesto);
+
+formValidatorEditProfile.enableValidation();
+formValidatorAddMesto.enableValidation();
