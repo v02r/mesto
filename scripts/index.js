@@ -22,7 +22,7 @@ const template = document.querySelector('#template-element');
 const container = document.querySelector('.elements');
 
 function renderCard(name, link, alt, templateSelector) {
-  const card = new Card(name, link, alt, templateSelector);
+  const card = new Card(name, link, alt, templateSelector, handleCardClick);
   const cardElement = card.generateCard();
   container.prepend(cardElement);
 }
@@ -56,6 +56,13 @@ function handleEditProfileFormSubmit(evt) {
   nameInput.textContent = popupName.value;
   jobInput.textContent = popupJob.value;
   closePopup(popupProfile);
+}
+
+function handleCardClick(name, link) {
+  imagePopup.querySelector('.popup__image').src = link;
+  imagePopup.querySelector('.popup__image').alt = name;
+  imagePopup.querySelector('.popup__title-bigimage').textContent = name;
+  openPopup(imagePopup);
 }
 
 function addEscListener() {

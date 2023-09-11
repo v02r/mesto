@@ -1,9 +1,11 @@
 export default class Card {
-  constructor(name, link, alt, templateSelector) {
+  constructor(name, link, alt, templateSelector, handleCardClick) {
     this._name = name;
     this._link = link;
     this._alt = alt;
     this._templateSelector = templateSelector;
+    this._imageElement = null;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -13,14 +15,14 @@ export default class Card {
 
   generateCard() {
     this._element = this._getTemplate().querySelector('.elements__card');
+    this._imageElement = this._element.querySelector('.elements__image');
     this._setEventListeners();
 
     const titleElement = this._element.querySelector('.elements__title');
-    const imageElement = this._element.querySelector('.elements__image');
 
     titleElement.textContent = this._name;
-    imageElement.src = this._link;
-    imageElement.alt = this._alt;
+    this._imageElement.src = this._link;
+    this._imageElement.alt = this._alt;
 
     return this._element;
   }
@@ -35,13 +37,7 @@ export default class Card {
   }
 
   openImagePopup() {
-    const imagePopup = document.querySelector('.popup_type_image');
-    const imagePopupImage = imagePopup.querySelector('.popup__image');
-    const imagePopupTitle = imagePopup.querySelector('.popup__title-bigimage');
-    imagePopupImage.src = this._link;
-    imagePopupImage.alt = this._name;
-    imagePopupTitle.textContent = this._name;
-    this._openPopup(imagePopup); 
+    this._handleCardClick(this._name, this._link);
   }
 
   _closeImagePopup() {
@@ -51,11 +47,10 @@ export default class Card {
   _setEventListeners() {
     const likeButton = this._element.querySelector('.elements__like-button');
     const deleteButton = this._element.querySelector('.elements__delete-button');
-    const imageElement = this._element.querySelector('.elements__image');
 
     likeButton.addEventListener('click', () => this.toggleLike());
     deleteButton.addEventListener('click', () => this.deleteCard());
-    imageElement.addEventListener('click', () => this.openImagePopup());
+    this._imageElement.addEventListener('click', () => this.openImagePopup());
     const imagePopupCloseButton = document.querySelector('.popup_type_image').querySelector('.popup__cancel-button_type_image');
     imagePopupCloseButton.addEventListener('click', () => this._closeImagePopup());
   }
