@@ -34,6 +34,7 @@ function handleAddMestoFormSubmit(evt) {
 
   renderCard(nameValue, linkValue, '', '#template-element');
   formAddMesto.reset();
+  formValidatorAddMesto.disableSubmitButton();
   closePopup(popupAddMesto);
 }
 
