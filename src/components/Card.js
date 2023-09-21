@@ -1,11 +1,12 @@
 export default class Card {
-  constructor(name, link, alt, templateSelector, handleCardClick) {
+  constructor(name, link, alt, templateSelector, handleCardClick, closeImagePopup) {
     this._name = name;
     this._link = link;
     this._alt = alt;
     this._templateSelector = templateSelector;
     this._imageElement = null;
     this._handleCardClick = handleCardClick;
+    this._closeImagePopup = closeImagePopup;
   }
 
   _getTemplate() {
@@ -41,7 +42,7 @@ export default class Card {
   }
 
   _closeImagePopup() {
-    this._closePopup(document.querySelector('.popup_type_image')); 
+    this._closeImagePopup();
   }
 
   _setEventListeners() {

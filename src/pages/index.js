@@ -25,6 +25,8 @@ import {
   config,
 } from '../utils/constants.js';
 
+let formValidatorAddMesto;
+
 function renderCard(name, link, alt, templateSelector) {
   const card = new Card(name, link, alt, templateSelector, handleCardClick);
   const cardElement = card.generateCard();
@@ -117,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const formValidatorEditProfile = new FormValidator(config, formEditProfile);
-  const formValidatorAddMesto = new FormValidator(config, formAddMesto);
+  formValidatorAddMesto = new FormValidator(config, formAddMesto);
 
   formValidatorEditProfile.enableValidation();
   formValidatorAddMesto.enableValidation();
