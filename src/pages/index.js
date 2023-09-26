@@ -2,6 +2,7 @@ import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import Popup from '../components/Popup.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 import {
   profileEditButton,
   addMestoButton,
@@ -26,6 +27,7 @@ import {
 } from '../utils/constants.js';
 
 let formValidatorAddMesto;
+let popupImage;
 
 function renderCard(name, link, alt, templateSelector) {
   const card = new Card(name, link, alt, templateSelector, handleCardClick);
@@ -66,10 +68,7 @@ function handleEditProfileFormSubmit(evt) {
 }
 
 function handleCardClick(name, link) {
-  imagePopup.querySelector('.popup__image').src = link;
-  imagePopup.querySelector('.popup__image').alt = name;
-  imagePopup.querySelector('.popup__title-bigimage').textContent = name;
-  openPopup(imagePopup);
+  popupImage.open(name, link);
 }
 
 function addEscListener() {
@@ -124,10 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
   formValidatorEditProfile.enableValidation();
   formValidatorAddMesto.enableValidation();
 
-  const section = new Section({
-    items: initialCards,
-    renderer: renderCard,
-  }, '.elements');
-
-  section.renderItems();
+  popupImage = new PopupWithImage('.popup_type_image');
+  popupImage.setEventListeners();
 });
