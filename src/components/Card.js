@@ -5,16 +5,16 @@ export default class Card {
     this._alt = alt;
     this._templateSelector = templateSelector;
     this._imageElement = null;
-    this._handleCardClick = handleCardClick; 
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
     const cardTemplate = document.querySelector(this._templateSelector);
-    return cardTemplate.content.cloneNode(true);
+    return cardTemplate.content.querySelector('.elements__card').cloneNode(true);
   }
 
   generateCard() {
-    this._element = this._getTemplate().querySelector('.elements__card');
+    this._element = this._getTemplate();
     this._imageElement = this._element.querySelector('.elements__image');
     this._setEventListeners();
 
