@@ -18,7 +18,6 @@ import {
 
 const formValidatorEditProfile = new FormValidator(config, formEditProfile);
 const formValidatorAddMesto = new FormValidator(config, formAddMesto);
-const popupImage = new PopupWithImage('.popup_type_image');
 
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
@@ -85,5 +84,5 @@ const popupAddMestoForm = new PopupWithForm('.popup_type_add-mesto', (formData) 
 
 popupAddMestoForm.setEventListeners();
 
-const imagePopupCloseButton = document.querySelector('.popup__cancel-button_type_image');
-imagePopupCloseButton.addEventListener('click', () => popupImage.close());
+const popupImage = new PopupWithImage('.popup_type_image');
+popupImage.setEventListeners();
