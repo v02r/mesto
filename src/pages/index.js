@@ -20,7 +20,7 @@ const formValidatorEditProfile = new FormValidator(config, formEditProfile);
 const formValidatorAddMesto = new FormValidator(config, formAddMesto);
 const popupImage = new PopupWithImage('.popup_type_image');
 
-let userInfo = new UserInfo({
+const userInfo = new UserInfo({
   nameSelector: '.profile__name',
   aboutSelector: '.profile__job',
 });
@@ -71,8 +71,6 @@ const popupProfileForm = new PopupWithForm('.popup_type_edit', (formData) => {
   const name = formData['p-name'];
   const about = formData['p-job'];
 
-  updateProfileInfo({ name, about });
-
   userInfo.setUserInfo({ name, about });
   popupProfileForm.close();
 });
@@ -89,11 +87,3 @@ popupAddMestoForm.setEventListeners();
 
 const imagePopupCloseButton = document.querySelector('.popup__cancel-button_type_image');
 imagePopupCloseButton.addEventListener('click', () => popupImage.close());
-
-function updateProfileInfo({ name, about }) {
-  const profileName = document.querySelector('.profile__name');
-  const profileJob = document.querySelector('.profile__job');
-
-  profileName.textContent = name;
-  profileJob.textContent = about;
-}
