@@ -42,7 +42,7 @@ export default class Api {
         });
     }
   
-    // Добавьте другие методы для работы с API, если необходимо
+    
   }
   
   const api = new Api({
