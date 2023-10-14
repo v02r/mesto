@@ -1,5 +1,5 @@
 export default class UserInfo {
-  constructor({ nameSelector, aboutSelector, avatarSelector }) {
+  constructor({nameSelector, aboutSelector, avatarSelector}) {
     this._nameElement = document.querySelector(nameSelector);
     this._aboutElement = document.querySelector(aboutSelector);
     this._avatarElement = document.querySelector(avatarSelector);
@@ -13,23 +13,18 @@ export default class UserInfo {
     };
   }
 
-  setUserInfo({ name, about, avatar }) {
+  setUserInfo({name, about, avatar, _id}) {
+    _id && (this._id = _id);
+    avatar && (this._avatarElement.src = avatar);
     this._nameElement.textContent = name;
     this._aboutElement.textContent = about;
+  }
+
+  setAvatar(avatar) {
     this._avatarElement.src = avatar;
   }
 
-  getUserInfoFromServer(api) {
-    api.getUserInfo()
-      .then((data) => {
-        this.setUserInfo({
-          name: data.name,
-          about: data.about,
-          avatar: data.avatar,
-        });
-      })
-      .catch((error) => {
-        console.error(`Error loading user info: ${error}`);
-      });
+  getUserId() {
+    return this._id;
   }
 }

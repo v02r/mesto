@@ -14,17 +14,20 @@
   </header>
   <main class="content">
 <!-- Профиль -->
-    <section class="profile"> 
+    <section class="profile">
       <div class="profile__profile-info">
-        <img src="<%=require('./images/custo.jpg')%>" alt="фото пофиля Жак-Ив Кусто" class="profile__avatar-image">
+        <div class="profile__avatar-button">
+          <img src="<%=require('./images/custo.jpg')%>" alt="фото пофиля Жак-Ив Кусто" class="profile__avatar-image">
+          <button class="profile__avatar-edit" type="button"></button>
+        </div>
         <div class="profile__name-block">
           <div class="profile__edit-info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button" type="button" title="Редактировать профиль"></button> 
+            <button class="profile__edit-button" type="button" title="Редактировать профиль"></button>
           </div>
           <h2 class="profile__job">Исследователь океана</h2>
         </div>
-      </div>           
+      </div>
       <button class="profile__add-button" type="button" title="Добавить профиль"></button>
     </section>
 <!--шаблон места-->
@@ -35,7 +38,7 @@
       <div class="elements__mesto">
         <h2 class="elements__title"></h2>
         <div class="elements__title_like-block">
-          <button class="elements__like-button" type="button" title="Нравится"></button> 
+          <button class="elements__like-button" type="button" title="Нравится"></button>
             <span
               class="elements__like-number"
               aria-label="Количество лайков"></span>
@@ -47,14 +50,14 @@
 <!--контейнер для вывода карточек-->
 
 
-  
-</section>     
-    </main>  
-<!--Футер-->   
+
+</section>
+    </main>
+<!--Футер-->
 
     <footer class="footer">
       <p class="footer__copyright"> &copy; 2023. Валера Митяев</p>
-    </footer>  
+    </footer>
 
  <!-- popuap edit-profile -->
     <div class="popup popup_type_edit">
@@ -83,7 +86,7 @@
           <label class="popup__input-field">
             <input type="text" class="popup__input popup__input_type_mesto" placeholder="Название" name="place-name" required minlength="2" maxlength="30"></label>
             <span id="error-place-name" class="error-message"></span>
-          
+
             <label class="popup__input-field">
             <input type="url" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" name="img-link" required></label>
             <span id="error-img-link" class="error-message"></span>
@@ -101,15 +104,15 @@
   </div>
 </div>
 <script type="module" src="./index.js"></script>
-    </body> 
+    </body>
 </html>
 
  <!--popup delete card-->
  <section class="popup popup_type_delete" id="popup__delete-confirmation">
   <div class="popup__container">
     <button class="popup__cancel-button" type="button"></button>
-    <h2 class="popup__delete-title">Вы уверены?</h2>
-    <button id="delete-card" class="popup__delete-button">Да</button>
+    <h2 class="popup__title popup__title-confirm">Вы уверены?</h2>
+    <button id="delete-card" class="popup__end-button">Да</button>
   </div>
 </section>
 
@@ -130,7 +133,10 @@
         class="popup__input popup__input_type_link"
         required
       />
-      <p data-target="avatar" id="avatar-target" class="error-message"></p>
+
+
+      <p data-target="avatar" id="error-avatar" class="error-message"></p>
+<!--         id="avatar-target"-->
       <button id="" class="popup__end-button" type="submit">
         Сохранить
       </button>

@@ -6,6 +6,7 @@ export default class PopupWithForm extends Popup {
     this._submitCallback = submitCallback;
     this._form = this._popup.querySelector('.popup__form');
     this._inputList = this._form.querySelectorAll('.popup__input');
+    this._popupSubmitButton = this._popup.querySelector('.popup__end-button');
   }
 
   _getInputValues() {
@@ -22,6 +23,10 @@ export default class PopupWithForm extends Popup {
       evt.preventDefault();
       this._submitCallback(this._getInputValues());
     });
+  }
+
+  setLoadingText(text) {
+    this._popupSubmitButton.innerText = text;
   }
 
   close() {

@@ -1,7 +1,9 @@
 export const profileEditButton = document.querySelector('.profile__edit-button');
 export const addMestoButton = document.querySelector('.profile__add-button');
+export const avatarEditButtton = document.querySelector('.profile__avatar-edit');
 export const formEditProfile = document.querySelector('.popup_type_edit .popup__form');
 export const formAddMesto = document.querySelector('.popup_type_add-mesto .popup__form');
+export const formAvatar = document.querySelector('.popup_type_profile-photo-change .popup__form');
 export const mestoNameInput = document.querySelector('.popup_type_add-mesto .popup__input_type_mesto');
 export const imgLinkInput = document.querySelector('.popup_type_add-mesto .popup__input_type_link');
 export const inputName = document.querySelector('.popup_type_edit .popup__input_type_name');

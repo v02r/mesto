@@ -50,6 +50,12 @@ export default class FormValidator {
     this._submitButton.classList.remove(this._config.inactiveButtonClass);
   }
 
+  clearErrors() {
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  }
+
   _setEventListeners() {
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
