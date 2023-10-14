@@ -461,24 +461,27 @@ template {
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/profile/__avatar-image/profile__avatar-image.css ***!
   \***************************************************************************************************************/
 .profile__avatar-image {
-    object-position: center;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: auto;
+  object-fit: cover;
+  object-position: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: auto;
+}
+
+
+
+@media screen and (min-width: 910px) {
+  .profile__avatar-image {
+    margin: 0;
   }
-
-  @media screen and (min-width: 910px) {
-    .profile__avatar-image {
-      margin: 0;
-    }
-  }
+}
 
 
 
 
-  
+
 /*!***************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/profile/__profile-info/profile__profile-info.css ***!
   \***************************************************************************************************************/
@@ -591,7 +594,7 @@ template {
     width: 18px;
     height: 18px;
     border: 1px solid #fff;
-    background-image: url(f0dd9c51cf799b8b82d2.svg);
+    background-image: url(ff0fcb318a3974db48d1.svg);
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: 7,5px 7,5px;
@@ -625,7 +628,7 @@ template {
      height: 50px;
      border: 2px solid #fff;
      border-radius: 2px;
-     background-image: url(d5d6f8af0577b9c95ee4.svg);
+     background-image: url(54b1426515811a15ebaf.svg);
      background-repeat: no-repeat;
      background-position: 50% 50%;
      background-size: 16px 16px;
@@ -644,6 +647,38 @@ template {
    .profile__add-button:hover {
     opacity: 0.6;
   }
+/*!*****************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/profile/__avatar-button/profile__avatar-button.css ***!
+  \*****************************************************************************************************************/
+.profile__avatar-button {
+  position: relative;
+}
+
+/*!*************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/profile/__avatar-edit/profile__avatar-edit.css ***!
+  \*************************************************************************************************************/
+.profile__avatar-edit {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(ff0fcb318a3974db48d1.svg);
+  background-repeat: no-repeat;
+  background-size: 26px;
+  /*background-color: black;*/
+  background-position: center;
+  opacity: 0;
+  outline: none;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.profile__avatar-edit:hover {
+  opacity: 1;
+}
+
 /*!************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/elements/elements.css ***!
   \************************************************************************************/
@@ -694,8 +729,9 @@ template {
   flex-direction: row;
   justify-content: space-between;
   align-items: first baseline;
-  padding: 25px 15px 31px 21px;
+  padding: 22px 20px;
 }
+
 /*!***************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/elements/__title/elements__title.css ***!
   \***************************************************************************************************/
@@ -710,6 +746,17 @@ template {
   white-space: nowrap;
   overflow: hidden;
 }
+/*!***************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/elements/__title/__like-block/elements__title_like-block.css ***!
+  \***************************************************************************************************************************/
+.elements__title_like-block{
+    display: flex;
+    flex-direction: column;
+    max-width: 22px;
+    width: 100%;
+
+  }
+
 /*!***************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/elements/__like-button/elements__like-button.css ***!
   \***************************************************************************************************************/
@@ -724,17 +771,28 @@ template {
    width: 22px;
    height: 19px;
    border: 0;
-   background-image: url(1ad06e85f169668a1f36.svg);
+   background-image: url(87ed371465c7a6a1cd01.svg);
    background-repeat: no-repeat;
    background-position: 50% 50%;
    background-size:contain;
    position: relative;
    cursor: pointer;
+  margin-bottom: 3px;
 }
 
 .elements__like-button:hover {
   opacity: 0.5;
 }
+
+/*!***************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/elements/__like-number/elements__like-number.css ***!
+  \***************************************************************************************************************/
+.elements__like-number {
+    align-self: center;
+    font-size: 13px;
+    text-align: center;
+    color: black;
+  }
 /*!*******************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/elements/__delete-button/elements__delete-button.css ***!
   \*******************************************************************************************************************/
@@ -751,16 +809,28 @@ template {
     border: 0;
     cursor: pointer;
     transition: opacity 0.1s linear;
+    visibility: hidden;
+  pointer-events: none;
   }
-  
+
   .element__delete:hover {
     opacity: 0.6;
   }
+
+/*!************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/elements/__delete-button/_visible/elements__delete-button_visible.css ***!
+  \************************************************************************************************************************************/
+.elements__delete-button_visible {
+  visibility: visible;
+  pointer-events: all;
+  }
+
+
 /*!******************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/elements/__like-button/_active/elements__like-button_active.css ***!
   \******************************************************************************************************************************/
 .elements__like-button_active{
-  background-image: url(35948469632d0421d697.svg);
+  background-image: url(fe17a515669479b1e649.svg);
 }
 /*!********************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/footer/footer.css ***!
@@ -848,7 +918,7 @@ position: absolute;
   top: -36px;
   right: 0;
   background-color: transparent;
-  background-image: url(039f1f5203f653b4bacd.svg);
+  background-image: url(2ceb783afbab75916ddc.svg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -999,6 +1069,13 @@ position: absolute;
   letter-spacing: 0em;
   text-align: left;   
 }
+/*!*************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/popup/__title-confirm/popup__title-confirm.css ***!
+  \*************************************************************************************************************/
+.popup__title-confirm {
+  margin-bottom: 38px;
+}
+
 /*!**********************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/error-message/error-message.css ***!
   \**********************************************************************************************/
