@@ -45,9 +45,12 @@ const popupProfileForm = new PopupWithForm('.popup_type_edit', (formData) => {
     api.editUserInfo({name, about}).then((res) => {
       const { name, about } = res;
       userInfo.setUserInfo({ name, about });
+      popupProfileForm.close();
+      formValidatorEditProfile.disableSubmitButton();
+    }).catch((err) => {
+      console.error(err);
     }).finally(() => {
       popupProfileForm.setLoadingText(submitText);
-      popupProfileForm.close();
     })
 });
 
@@ -60,13 +63,14 @@ const popupAddMestoForm = new PopupWithForm('.popup_type_add-mesto', (formData) 
         .then((cardData) => {
             const cardElement = createCard(cardData);
             cardsSection.addItem(cardElement);
+          popupAddMestoForm.close();
+          formValidatorAddMesto.disableSubmitButton();
         })
         .catch((err) => {
             console.error(err);
         })
       .finally(() => {
         popupAddMestoForm.setLoadingText(submitText);
-        popupAddMestoForm.close();
       })
 });
 
@@ -78,13 +82,13 @@ const popupDeleteCard = new PopupConfirm(
     api.deleteCard(element._data._id)
       .then(_ => {
         element.removeCard()
+        popupDeleteCard.close();
       })
       .catch(err => {
         console.log(err);
       })
       .finally(() => {
         popupDeleteCard.setLoadingText(submitText);
-        popupDeleteCard.close();
       })
   }
 );
@@ -147,13 +151,14 @@ const popupAvatar = new PopupWithForm(
     api.editAvatar(data.avatar)
       .then(res => {
         userInfo.setAvatar(res.avatar)
+        popupAvatar.close();
+        formValidatorAvatar.disableSubmitButton();
       })
       .catch(err => {
         console.log(err);
       })
       .finally(() => {
         popupAvatar.setLoadingText(submitText);
-        popupAvatar.close();
       })
   }
 );
